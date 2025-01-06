@@ -10,13 +10,13 @@ const Footer = () => {
         <p className='mt-4 md:mt-0 text-xs'>© 2025 | All rights reserved</p>
 
         <div className="flex space-x-6 mt-4">
-    <a href="#" className="transform transition-transform hover:scale-125 hover:text-[#0077b5]"> 
+    <a href="https://www.linkedin.com/in/mihai-hodisan-6b93832a7/" className="transform transition-transform hover:scale-125 hover:text-[#0077b5]"> 
         <FaLinkedin size={24} /> 
     </a>
-    <a href="#" className="transform transition-transform hover:scale-125 hover:text-[#8a3ab9]"> 
+    <a href="https://www.instagram.com/hodii18640/" className="transform transition-transform hover:scale-125 hover:text-[#8a3ab9]"> 
         <FaInstagram size={24} /> 
     </a>
-    <a href="#" className="transform transition-transform hover:scale-125 hover:text-[#3b5998]"> 
+    <a href="https://www.facebook.com/hodisan.mihai.6/" className="transform transition-transform hover:scale-125 hover:text-[#3b5998]"> 
         <FaFacebook size={24} /> 
     </a>
 </div>

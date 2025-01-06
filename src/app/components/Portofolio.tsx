@@ -5,26 +5,37 @@ import { motion } from "framer-motion";
 import { FaGitAlt, FaExternalLinkAlt } from "react-icons/fa";
 import Image from "next/image";
 import projectphoto from "../assets/project.jpg";
-import proj1Cover from "../assets/proj1.jpg";
+import proj1Cover from "../assets/hmproj.png";
+import premiumrentCover from "../assets/premiumrentproj.png"
+import oldportoCover from "../assets/oldporto.png"
 
 const projects = [
     {
-        title: "HM-Media",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora consectetur dolor inventore quis officiis deserunt animi natus corrupti, excepturi eum numquam! Voluptatum culpa explicabo incidunt itaque ad ipsa placeat.",
+        title: "HM-Design",
+        desc: "HM Media offers custom web development services with a focus on creating professional, user-friendly websites. From responsive designs to complex business solutions, we deliver tailored digital experiences at transparent prices. Whether you need a simple landing page or an advanced website, we ensure each project is polished and scalable to meet your business needs.",
         devStack: "#",
         link: "https://hm-design.ro",
         git: "https://github.com/hodisanmihai/services",
         videoSrc: "/hm-design.mov",
-        phoneCover: "/mobile-cover-2.jpg"
+        phoneCover: proj1Cover
     },
     {
-        title: "Auto Service",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora consectetur dolor inventore quis officiis deserunt animi natus corrupti, excepturi eum numquam! Voluptatum culpa explicabo incidunt itaque ad ipsa placeat.",
+        title: "Premium Rent Equip",
+        desc: "This website for a local auto service provides an easy-to-navigate experience for customers seeking quality car repairs and maintenance. With clear service offerings, and responsive design, the site ensures that car owners can quickly find the help they need, anytime, anywhere.",
         devStack: "#",
         link: "https://premiumrentequip.ro",
         git: "https://github.com/hodisanmihai/premiumrent",
-        videoSrc: "/hm-design.mov",
-        phoneCover: proj1Cover,
+        videoSrc: "/premiumrent.mov",
+        phoneCover: premiumrentCover,
+    },
+    {
+        title: "More Detailed Portofolio",
+        desc: "My old portfolio showcases a variety of web projects with detailed case studies that outline challenges, solutions, and results. Each project highlights my development journey and creative process, demonstrating my evolution in the web industry and commitment to delivering tailored web experiences.",
+        devStack: "#",
+        link: "https://hodisanmihai.github.io/home",
+        git: "https://github.com/hodisanmihai/hodisanmihai.github.io",
+        videoSrc: "/oldporto.mov",
+        phoneCover: oldportoCover,
     },
 
 ];
