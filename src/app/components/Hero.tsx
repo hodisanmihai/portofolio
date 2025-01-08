@@ -5,8 +5,26 @@ import lighting from "../assets/icon2.png";
 import { motion } from "framer-motion";
 import profilepic from "../assets/profilepic.png";
 import React from "react";
-
+import { useLanguage } from "../components/LanguageContext";
 const Hero = () => {
+  const { language } = useLanguage(); 
+
+ 
+  const textContent: Record<"en" | "ro", { greeting: string; name: string; profession: string }> = {
+    en: {
+      greeting: "Hi, I am",
+      name: "Hodisan Mihai",
+      profession: "I am a front-end developer",
+    },
+    ro: {
+      greeting: "Salut, sunt",
+      name: "Hodisan Mihai",
+      profession: "Sunt un dezvoltator front-end",
+    },
+  };
+
+  const currentText = textContent[language as "en" | "ro"];
+
   return (
     <div className="py-24 relative overflow-clip bg-[linear-gradient(to_bottom,#000,#2B1942_35%,#8F5C55_60%,#DBAF6E_80%)]">
       <div
@@ -14,13 +32,13 @@ const Hero = () => {
       ></div>
 
       <div className="relative">
-        <div className="text-8xl font-bold text-center">
-          <h1 className="text-[#98B4CE]">Hi, I am</h1>
-          <h1 className="text-[#E48A57]">Hodisan Mihai</h1>
+        <div className="text-7xl md:text-8xl font-bold text-center">
+          <h1 className="text-[#98B4CE]">{currentText.greeting}</h1>
+          <h1 className="text-[#E48A57]">{currentText.name}</h1>
         </div>
 
         <motion.div
-          className="absolute left-[320px] top-[350px] md:left-[520px]"
+          className="absolute left-[320px] top-[350px] md:left-[425px]"
           drag
         >
           <Image
@@ -32,31 +50,31 @@ const Hero = () => {
         </motion.div>
 
         <motion.div
-          className="absolute left-[20px] top-[350px] md:left-[1200px]"
+          className="absolute left-[20px] top-[375px] md:left-[1000px]"
           drag
         >
           <Image
             src={lighting}
-            className="w-[100px] h-[170px] md:w-[120px] md:h-[190px]"
+            className="w-auto h-[170px]  md:h-[190px]"
             alt="lighting"
             draggable="false"
           />
         </motion.div>
 
         <motion.div
-className="absolute left-[200px] top-[450px] hidden md:block"
+          className="absolute left-[200px] top-[400px] hidden md:block"
           drag
         >
           <Image
             src={lighting}
-            className="w-[100px] h-[170px] md:w-[120px] md:h-[190px]" 
+            className="w-auto h-[170px] md:h-[190px]"
             alt="lighting"
             draggable="false"
           />
         </motion.div>
 
         <motion.div
-          className="absolute right-[200px] top-[450px] hidden md:block"          
+          className="absolute right-[100px] top-[425px] hidden md:block"
           drag
         >
           <Image
@@ -66,17 +84,15 @@ className="absolute left-[200px] top-[450px] hidden md:block"
             draggable="false"
           />
         </motion.div>
-
-
 
         <p className="text-center text-xl max-w-[500px] mx-auto mt-8 text-white/80">
-          I am a front-end developer
+          {currentText.profession}
         </p>
 
         <Image
           src={profilepic}
           alt="profilepic"
-          className="h-auto w-auto mx-auto"
+          className="h-auto w-[200px] md:w-[250px] mx-auto"
         />
       </div>
     </div>
