@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import EnglishLang from "../assets/uk-flag.png"; 
 import RoLang from "../assets/ro-flag.png"; 
 import { useLanguage } from "./LanguageContext";
+import Image from 'next/image'
 
 const LanguageSwitcher: React.FC = () => {
   const { language, switchLanguage } = useLanguage(); 
@@ -41,7 +42,7 @@ const LanguageSwitcher: React.FC = () => {
           : "rotateY(0deg) scale(1)",
       }}
     >
-      <img
+      <Image
         src={currentFlag} 
         alt={language === "en" ? "English" : "Romanian"}
         style={{
