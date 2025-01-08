@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import EnglishLang from "../assets/uk-flag.png"; 
 import RoLang from "../assets/ro-flag.png"; 
 import { useLanguage } from "./LanguageContext";
-import Image from 'next/image'
+import Image from "next/image";
 
 const LanguageSwitcher: React.FC = () => {
   const { language, switchLanguage } = useLanguage(); 
