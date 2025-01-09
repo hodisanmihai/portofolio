@@ -6,7 +6,6 @@ import Portofolio from "./components/Portofolio";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Language from "./components/LanguageSwitcher";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 
 
