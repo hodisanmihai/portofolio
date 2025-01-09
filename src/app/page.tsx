@@ -1,4 +1,5 @@
 
+import Head from 'next/head';
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -13,6 +14,11 @@ export default function Home() {
   return (
 
   <>
+  <Head>
+        <title>Home | Hodisan Mihai</title>
+        <meta name="description" content="Welcome to my web development portfolio showcasing my skills and projects built with React, Next.js, and more." />
+      </Head>
+  
     <Navbar />
     <Hero />
     <About />
