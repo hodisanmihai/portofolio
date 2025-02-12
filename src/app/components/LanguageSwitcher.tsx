@@ -36,7 +36,7 @@ const LanguageSwitcher: React.FC = () => {
         justifyContent: "center",
         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)", // Shadow for emphasis
         cursor: "pointer",
-        zIndex: 1000, // Ensures it stays on top of other elements
+        zIndex: 990, // Ensures it stays on top of other elements
         transition: "background-color 0.3s ease, transform 0.3s ease", // Transition for background color and transform
         transform: isAnimating
           ? "rotateY(180deg) scale(1.1)" // Rotation and scale on animation

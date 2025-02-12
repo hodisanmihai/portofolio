@@ -8,6 +8,7 @@ import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import IntroAnimation from './components/Intro';
 
 
 export default function Home() {
@@ -18,7 +19,8 @@ export default function Home() {
         <title>Home | Hodisan Mihai</title>
         <meta name="description" content="Welcome to my web development portfolio showcasing my skills and projects built with React, Next.js, and more." />
       </Head>
-  
+
+    <IntroAnimation />
     <Navbar />
     <Hero />
     <About />
