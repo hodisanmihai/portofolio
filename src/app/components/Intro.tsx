@@ -5,7 +5,6 @@ const IntroAnimation = () => {
   const [screenOpen, setScreenOpen] = useState(false);
   const [showElements, setShowElements] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
-  const [showMainContent, setShowMainContent] = useState(false);
 
   useEffect(() => {
     document.documentElement.classList.add("overflow-hidden", "h-screen"); // Disable scrolling
@@ -15,7 +14,6 @@ const IntroAnimation = () => {
     const fadeOutTimeout = setTimeout(() => {
       setFadeOut(true);
       setTimeout(() => {
-        setShowMainContent(true);
         document.documentElement.classList.remove("overflow-hidden", "h-screen"); // Re-enable scrolling
       }, 1000);
     }, 8000);
