@@ -10,11 +10,13 @@ import premiumrentCover from "../assets/premiumrentproj.png";
 import oldportoCover from "../assets/oldporto.png";
 import { useLanguage } from "./LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ecomercestore from "../assets/ecomerce-store.png";
+import nrgym from "../assets/nrgym.png";
 
 const Portofolio = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  const { language } = useLanguage(); 
+  const { language } = useLanguage();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -26,8 +28,18 @@ const Portofolio = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  
   const projects = [
+    {
+      title: language === "en" ? "Ecommerce Store" : "Magazin Online",
+      desc:
+        language === "en"
+          ? "I developed a fully responsive e-commerce website using Next.js, React, TypeScript, Tailwind CSS, Sanity CMS, and Stripe integration for secure payments. The project features dynamic product pages, a fully functional shopping cart, CMS-based product management, and a real checkout flow. Additionally, I designed the UI/UX in Figma, tailored specifically for this project. The platform is optimized for both desktop and mobile devices."
+          : "Am dezvoltat un magazin online responsive utilizând Next.js, React, TypeScript, Tailwind CSS, CMS Sanity și integrare Stripe pentru plăți securizate. Proiectul include funcționalități precum gestionare produse prin CMS, pagini dinamice pentru fiecare produs, coș de cumpărături complet funcțional și proces de checkout real. De asemenea, am realizat designul UI/UX în Figma, personalizat pentru acest proiect. Platforma este optimizată atât pentru desktop, cât și pentru mobil.",
+      link: "https://ecommerce-fg.vercel.app/",
+      git: "https://github.com/hodisanmihai/ecommerce-fg",
+      videoSrc: "/ecomerce-store.mov",
+      phoneCover: ecomercestore,
+    },
     {
       title: language === "en" ? "HM-Design" : "HM-Design",
       desc:
@@ -38,6 +50,20 @@ const Portofolio = () => {
       git: "https://github.com/hodisanmihai/services",
       videoSrc: "/hm-design.mov",
       phoneCover: proj1Cover,
+    },
+    {
+      title:
+        language === "en"
+          ? "Fitness Gym Presentation Website"
+          : "Website de Prezentare pentru Sală de Fitness",
+      desc:
+        language === "en"
+          ? "I developed a modern presentation website for a local fitness gym using React, TypeScript, Next.js, and TailwindCSS. I designed the UI/UX myself, ensuring an intuitive and attractive user experience. The website is fully responsive and optimized for both desktop and mobile devices. Although the project was not officially launched, building it helped me deepen my skills in dynamic component integration and professional UI development in Next.js."
+          : "Am dezvoltat un website modern de prezentare pentru o sală de fitness locală, utilizând React, TypeScript, Next.js și TailwindCSS. Design-ul UI/UX a fost creat de mine, asigurând o experiență de utilizare intuitivă și atrăgătoare. Website-ul este complet responsive, optimizat atât pentru desktop cât și pentru mobil. Deși proiectul nu a fost lansat oficial, realizarea lui m-a ajutat să aprofundez integrarea componentelor dinamice și dezvoltarea de interfețe profesionale în Next.js.",
+      link: "https://nrgym-hodisanmihais-projects.vercel.app/",
+      git: "https://github.com/hodisanmihai/nrgym",
+      videoSrc: "/nrgym.mov",
+      phoneCover: nrgym,
     },
     {
       title: language === "en" ? "Premium Rent Equip" : "Premium Rent Equip",
@@ -51,7 +77,8 @@ const Portofolio = () => {
       phoneCover: premiumrentCover,
     },
     {
-      title: language === "en" ? "More Detailed Portfolio" : "Portofoliu Detaliat",
+      title:
+        language === "en" ? "More Detailed Portfolio" : "Portofoliu Detaliat",
       desc:
         language === "en"
           ? "My old portfolio showcases a variety of web projects with detailed case studies that outline challenges, solutions, and results."
@@ -64,14 +91,18 @@ const Portofolio = () => {
   ];
 
   return (
-    <div className="text-white bg-gradient-to-b from-black to-[#381a5f] py-18 mt-40" id="portofolio">
-   
+    <div
+      className="text-white bg-gradient-to-b from-black to-[#381a5f] py-18 mt-40"
+      id="portofolio"
+    >
       <LanguageSwitcher />
 
       {/* Header */}
       <h1 className="text-white text-5xl max-w-[320px] mx-auto font-semibold my-12">
         {language === "en" ? "My" : "Proiectele"}{" "}
-        <span className="text-orange-400">{language === "en" ? "Projects" : "Mele"}</span>
+        <span className="text-orange-400">
+          {language === "en" ? "Projects" : "Mele"}
+        </span>
       </h1>
 
       {/* Projects */}
@@ -92,7 +123,9 @@ const Portofolio = () => {
             <div className="space-y-2 max-w-[550px]">
               <h2 className="text-7xl my-4 text-white/70">{`0${index + 1}`}</h2>
               <h2 className="text-4xl">{project.title}</h2>
-              <p className="text-lg text-white/70 break-words p-4">{project.desc}</p>
+              <p className="text-lg text-white/70 break-words p-4">
+                {project.desc}
+              </p>
               <div className="flex flex-row md:flex-row items-start md:items-center gap-4 md:gap-6 mt-4">
                 <a
                   href={project.link}
