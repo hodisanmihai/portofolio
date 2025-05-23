@@ -126,7 +126,7 @@ const About = () => {
 
       <div className="text-white flex items-center max-w-[320px] text-center mx-auto font-normal p-4 mb-4 ">
         <a
-          href="/CV-HODISAN-MIHAi-2025.pdf"
+          href="/CV-HODISAN-MIHAI-2025.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-orange-700 hover:bg-orange-500 px-6 py-2 w-full font-semibold text-xl rounded-xl items-center justify-center text-center flex gap-5"
