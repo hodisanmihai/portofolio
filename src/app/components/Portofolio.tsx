@@ -92,7 +92,7 @@ const Portofolio = () => {
 
   return (
     <div
-      className="text-white bg-gradient-to-b from-black to-[#381a5f] py-18 mt-40"
+      className="text-white bg-gradient-to-b from-black to-[#381a5f] py-[18px] mt-40"
       id="portofolio"
     >
       <LanguageSwitcher />
