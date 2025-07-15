@@ -12,6 +12,7 @@ import { useLanguage } from "./LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ecomercestore from "../assets/ecomerce-store.png";
 import nrgym from "../assets/nrgym.png";
+import acoperisuri from "../assets/acoperisuri.png";
 
 const Portofolio = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -39,6 +40,18 @@ const Portofolio = () => {
       git: "https://github.com/hodisanmihai/ecommerce-fg",
       videoSrc: "/ecomerce-store.mov",
       phoneCover: ecomercestore,
+    },
+    {
+      title:
+        language === "en" ? "Presentation Website" : "Website de prezentare",
+      desc:
+        language === "en"
+          ? "I developed a fully responsive presentation website for a local roofing and roof repair business using Next.js, React, TypeScript, and Tailwind CSS. The site includes essential sections such as Hero, About, Services, Contact, and Footer. I designed the UI/UX in Figma, focusing on clean structure, visual clarity, and full responsiveness across all devices."
+          : "Am realizat un website de prezentare complet responsive pentru o afacere locală specializată în reparații și construcții de acoperișuri, utilizând Next.js, React, TypeScript și Tailwind CSS. Website-ul conține secțiuni esențiale precum: Hero, Despre Noi, Servicii, Contact și Footer. Designul UI/UX a fost creat în Figma, cu focus pe claritate, structură aerisită și compatibilitate completă pe toate dispozitivele.",
+      link: "https://new-project-three-bice.vercel.app",
+      git: "https://github.com/hodisanmihai/new-project",
+      videoSrc: "/acoperisuri.mov",
+      phoneCover: acoperisuri,
     },
     {
       title: language === "en" ? "HM-Design" : "HM-Design",
