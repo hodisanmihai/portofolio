@@ -11,45 +11,49 @@ import {
   FaSass,
   FaFigma,
 } from "react-icons/fa";
-
-import { SiTailwindcss, SiFramer, SiTypescript, SiNextdotjs } from "react-icons/si";
+import {
+  SiTailwindcss,
+  SiFramer,
+  SiTypescript,
+  SiNextdotjs,
+} from "react-icons/si";
 import { useLanguage } from "./LanguageContext";
 
 const skillIcons = [
-  { icon: <FaHtml5 size={140} />, label: "HTML" },
-  { icon: <FaCss3Alt size={140} />, label: "CSS" },
-  { icon: <FaJsSquare size={140} />, label: "JavaScript" },
-  { icon: <FaReact size={140} />, label: "React" },
-  { icon: <SiTailwindcss size={140} />, label: "Tailwind" },
-  { icon: <FaBootstrap size={140} />, label: "Bootstrap" },
-  { icon: <FaGitAlt size={140} />, label: "Git" },
-  { icon: <FaFigma size={140} />, label: "Figma" },
-  { icon: <SiFramer size={140} />, label: "Framer" },
-  { icon: <FaSass size={140} />, label: "Sass" },
-  { icon: <SiTypescript size={140} />, label: "TypeScript" },
-  { icon: <SiNextdotjs size={140} />, label: "Next.js" },
+  { Icon: FaHtml5, label: "HTML" },
+  { Icon: FaCss3Alt, label: "CSS" },
+  { Icon: FaJsSquare, label: "JavaScript" },
+  { Icon: FaReact, label: "React" },
+  { Icon: SiTailwindcss, label: "Tailwind" },
+  { Icon: FaBootstrap, label: "Bootstrap" },
+  { Icon: FaGitAlt, label: "Git" },
+  { Icon: FaFigma, label: "Figma" },
+  { Icon: SiFramer, label: "Framer" },
+  { Icon: FaSass, label: "Sass" },
+  { Icon: SiTypescript, label: "TypeScript" },
+  { Icon: SiNextdotjs, label: "Next.js" },
 ];
 
 const Skills = () => {
   const { language } = useLanguage();
 
   return (
-    <div className="bg-[linear-gradient(to_top,#000,#381a5f_80%)] py-32">
-      <div className="text-white w-[400px] md:min-w-[950px] mx-auto p-8 text-center">
+    <div className="bg-[linear-gradient(to_top,#000,#381a5f_80%)] py-16 sm:py-24">
+      <div className="text-white max-w-screen-lg w-full mx-auto px-4 text-center">
         {/* Multilingual Title */}
-        <h2 className="text-6xl font-bold mb-4">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8">
           {language === "en" ? "My Skills" : "Skill-urile Mele"}
         </h2>
 
         {/* Skill Icons */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 justify-center">
-          {skillIcons.map((skill, index) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-6 sm:gap-8 place-items-center">
+          {skillIcons.map(({ Icon, label }, index) => (
             <div
               key={index}
-              className="h-[160px] w-[160px] md:h-[220px] md:w-[220px] flex flex-col items-center justify-between bg-white/10 p-4 rounded-xl transform transition-transform hover:scale-105"
+              className="w-full max-w-[160px] aspect-square flex flex-col items-center justify-center bg-white/10 p-4 rounded-xl transform transition-transform hover:scale-105"
             >
-              {skill.icon && <div>{skill.icon}</div>}
-              <p className="mt-2">{skill.label}</p>
+              <Icon className="text-white" size={60} />
+              <p className="mt-3 text-sm sm:text-base">{label}</p>
             </div>
           ))}
         </div>

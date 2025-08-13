@@ -28,7 +28,7 @@ const About = () => {
 
   const toggleExpand = (cardName: keyof ExpandedState) => {
     setExpanded((prevState) => {
-      const newState = {
+      const newState: ExpandedState = {
         book: false,
         pc: false,
         card: false,
@@ -41,21 +41,9 @@ const About = () => {
     });
   };
 
-  const textContent: Record<
-    "en" | "ro",
-    {
-      header: { title: string; description: string };
-      journey: { title: string; description: string };
-      ideas: { title: string; description: string };
-      origin: { title: string; description: string };
-      vision: { title: string; description: string };
-    }
-  > = {
+  const textContent = {
     en: {
-      header: {
-        title: "About",
-        description: "Me",
-      },
+      header: { title: "About", description: "Me" },
       journey: {
         title: "My Journey",
         description:
@@ -78,10 +66,7 @@ const About = () => {
       },
     },
     ro: {
-      header: {
-        title: "Despre",
-        description: "Mine",
-      },
+      header: { title: "Despre", description: "Mine" },
       journey: {
         title: "Călătoria Mea",
         description:
@@ -114,159 +99,99 @@ const About = () => {
     return expanded ? text : truncated;
   };
 
+  const Card = ({
+    cardName,
+    imgSrc,
+    title,
+    description,
+    colSpan,
+  }: {
+    cardName: keyof ExpandedState;
+    imgSrc: any;
+    title: string;
+    description: string;
+    colSpan: string;
+  }) => (
+    <div
+      onClick={() => toggleExpand(cardName)}
+      className={`md:w-full w-[80%]  ${colSpan} relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden transform transition-transform hover:scale-105  ${
+        expanded[cardName] ? "scale-105 " : "scale-100 "
+      } transition-all duration-500 ease-in-out cursor-pointer`}
+    >
+      <div className="  absolute inset-0 bg-gradient-to-r from-orange-400 via-purple-700 to-orange-800 opacity-30"></div>
+      <div className="flex flex-col sm:flex-row p-6">
+        <Image
+          src={imgSrc}
+          alt={title}
+          className="w-full sm:w-auto sm:h-[130px] h-auto object-contain"
+        />
+        <div className="flex flex-col mt-4 sm:mt-0 sm:ml-4">
+          <h2 className="text-2xl font-bold text-white/80">{title}</h2>
+          <p className="text-lg text-white/70 mt-2">
+            {getTruncatedText(description, expanded[cardName])}
+          </p>
+          {!expanded[cardName] && (
+            <span className="text-orange-400 cursor-pointer mt-2">
+              Read More
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="max-w-[1200px] mx-auto pt-[18px]" id="about">
-      <h1 className="text-white text-center text-5xl max-w-[320px] mx-auto font-semibold p-4 mb-4 ">
+      <h1 className="text-white text-center text-4xl sm:text-5xl max-w-[320px] mx-auto font-semibold p-4 mb-4">
         {currentText.header.title}{" "}
         <span className="text-orange-400">
           {currentText.header.description}
         </span>
       </h1>
-      {/* CV BUTTOn */}
 
-      <div className="text-white flex items-center max-w-[320px] text-center mx-auto font-normal p-4 mb-4 ">
+      {/* CV Button */}
+      <div className="text-white flex items-center max-w-[320px] text-center mx-auto font-normal p-4 mb-4">
         <a
           href="/CV-HODISAN-MIHAI-2025.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-orange-700 hover:bg-orange-500 px-6 py-2 w-full font-semibold text-xl rounded-xl items-center justify-center text-center flex gap-5"
+          className="bg-orange-700 hover:bg-orange-500 px-6 py-2 w-full font-semibold text-lg sm:text-xl rounded-xl flex gap-3 justify-center items-center"
         >
           <Download size={20} />{" "}
           {language === "ro" ? "Vizualizează CV" : "View my Resume"}
         </a>
       </div>
 
-      <div className="px-6 md:mt-11 md:p-0 grid md:grid-cols-8 gap-6 place-items-center">
-        {/* Card 1 */}
-        <div
-          onClick={() => toggleExpand("book")}
-          className={`w-full md:col-span-5 relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden transform transition-transform hover:scale-105
-            ${
-              expanded.book ? "scale-105 max-h-auto" : "scale-90 max-h-[250px]"
-            } transition-all duration-500 ease-in-out transform cursor-pointer`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-purple-700 to-orange-800 opacity-30 animate-gradient-xy"></div>
-          <div className="flex flex-row p-6">
-            <Image src={book} alt="book" className="w-auto h-[130px]" />
-            <div className="flex flex-col mt-4">
-              <h2 className="text-2xl font-bold text-white/80">
-                {currentText.journey.title}
-              </h2>
-              <p className="text-lg text-white/70 mt-2">
-                {getTruncatedText(
-                  currentText.journey.description,
-                  expanded.book
-                )}
-              </p>
-              {!expanded.book && (
-                <span
-                  onClick={() => toggleExpand("book")}
-                  className="text-orange-400 cursor-pointer mt-2"
-                >
-                  Read More
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Card 2 */}
-        <div
-          onClick={() => toggleExpand("pc")}
-          className={`w-full md:col-span-3 relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden transform transition-transform hover:scale-105
-            ${
-              expanded.pc ? "scale-105 max-h-auto" : "scale-90 max-h-[250px]"
-            } transition-all duration-500 ease-in-out transform cursor-pointer`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-purple-700 to-orange-800 opacity-30 animate-gradient-xy"></div>
-          <div className="flex flex-row p-6">
-            <Image src={pc} alt="pc" className="w-auto h-[130px]" />
-            <div className="flex flex-col mt-4">
-              <h2 className="text-2xl font-bold text-white/80">
-                {currentText.ideas.title}
-              </h2>
-              <p className="text-lg text-white/70 mt-2">
-                {getTruncatedText(currentText.ideas.description, expanded.pc)}
-              </p>
-              {!expanded.pc && (
-                <span
-                  onClick={() => toggleExpand("pc")}
-                  className="text-orange-400 cursor-pointer mt-2"
-                >
-                  Read More
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Card 3 */}
-        <div
-          onClick={() => toggleExpand("card")}
-          className={`w-full md:col-span-3 relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden  transform transition-transform hover:scale-105
-            ${
-              expanded.card ? "scale-105 max-h-auto" : "scale-90 max-h-[250px]"
-            } transition-all duration-500 ease-in-out transform cursor-pointer`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-purple-700 to-orange-800 opacity-30 animate-gradient-xy "></div>
-          <div className="flex flex-row p-6">
-            <Image src={card} alt="card" className="w-auto h-[130px]" />
-            <div className="flex flex-col mt-4">
-              <h2 className="text-2xl font-bold text-white/80">
-                {currentText.origin.title}
-              </h2>
-              <p className="text-lg text-white/70 mt-2">
-                {getTruncatedText(
-                  currentText.origin.description,
-                  expanded.card
-                )}
-              </p>
-              {!expanded.card && (
-                <span
-                  onClick={() => toggleExpand("card")}
-                  className="text-orange-400 cursor-pointer mt-2"
-                >
-                  Read More
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Card 4 */}
-        <div
-          onClick={() => toggleExpand("finance")}
-          className={`w-full md:col-span-5 relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden transform transition-transform hover:scale-105
-            ${
-              expanded.finance
-                ? "scale-105 max-h-auto"
-                : "scale-90 max-h-[250px]"
-            } transition-all duration-500 ease-in-out transform cursor-pointer`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-purple-700 to-orange-800 opacity-30 animate-gradient-xy "></div>
-          <div className="flex flex-row p-6">
-            <Image src={finance} alt="finance" className="w-auto h-[130px]" />
-            <div className="flex flex-col mt-4">
-              <h2 className="text-2xl font-bold text-white/80">
-                {currentText.vision.title}
-              </h2>
-              <p className="text-lg text-white/70 mt-2">
-                {getTruncatedText(
-                  currentText.vision.description,
-                  expanded.finance
-                )}
-              </p>
-              {!expanded.finance && (
-                <span
-                  onClick={() => toggleExpand("finance")}
-                  className="text-orange-400 cursor-pointer mt-2"
-                >
-                  Read More
-                </span>
-              )}
-            </div>
-          </div>
-        </div>
+      {/* Cards Grid */}
+      <div className="px-4 sm:px-6 md:mt-11 md:p-0 grid grid-cols-1 md:grid-cols-8 gap-6 place-items-center">
+        <Card
+          cardName="book"
+          imgSrc={book}
+          title={currentText.journey.title}
+          description={currentText.journey.description}
+          colSpan="md:col-span-5"
+        />
+        <Card
+          cardName="pc"
+          imgSrc={pc}
+          title={currentText.ideas.title}
+          description={currentText.ideas.description}
+          colSpan="md:col-span-3"
+        />
+        <Card
+          cardName="card"
+          imgSrc={card}
+          title={currentText.origin.title}
+          description={currentText.origin.description}
+          colSpan="md:col-span-3"
+        />
+        <Card
+          cardName="finance"
+          imgSrc={finance}
+          title={currentText.vision.title}
+          description={currentText.vision.description}
+          colSpan="md:col-span-5"
+        />
       </div>
     </div>
   );
