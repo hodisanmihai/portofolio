@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import book from "../assets/book.png";
 import pc from "../assets/pc.png";
 import card from "../assets/location.png";
@@ -16,7 +16,67 @@ interface ExpandedState {
   finance: boolean;
 }
 
-const About = () => {
+interface CardProps {
+  cardName: keyof ExpandedState;
+  imgSrc: StaticImageData;
+  title: string;
+  description: string;
+  colSpan: string;
+  expanded: ExpandedState;
+  toggleExpand: (cardName: keyof ExpandedState) => void;
+}
+
+const Card: React.FC<CardProps> = ({
+  cardName,
+  imgSrc,
+  title,
+  description,
+  colSpan,
+  expanded,
+  toggleExpand,
+}) => {
+  const getTruncatedText = (text: string, isExpanded: boolean) => {
+    const sentenceEndIndex =
+      text.indexOf("...") !== -1 ? text.indexOf("...") : 60;
+    const truncated = text.substring(0, sentenceEndIndex);
+    return isExpanded ? text : truncated;
+  };
+
+  return (
+    <div
+      onClick={() => toggleExpand(cardName)}
+      className={`md:w-full w-[80%] ${colSpan} relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden transform cursor-pointer 
+        ${
+          expanded[cardName]
+            ? "scale-105 duration-[1000ms]"
+            : "scale-100 duration-500"
+        } 
+        transition-all ease-in-out`}
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-orange-400 via-purple-700 to-orange-800 opacity-30"></div>
+      <div className="flex flex-col sm:flex-row p-6">
+        <Image
+          src={imgSrc}
+          alt={title}
+          className="w-full sm:w-auto sm:h-[130px] h-auto object-contain"
+        />
+        <div className="flex flex-col mt-4 sm:mt-0 sm:ml-4">
+          <h2 className="text-2xl font-bold text-white/80">{title}</h2>
+          <p className="text-lg text-white/70 mt-2">
+            {getTruncatedText(description, expanded[cardName])}
+          </p>
+          {!expanded[cardName] && (
+            <span className="text-orange-400 cursor-pointer mt-2">
+              Read More
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const About: React.FC = () => {
   const [expanded, setExpanded] = useState<ExpandedState>({
     book: false,
     pc: false,
@@ -27,14 +87,14 @@ const About = () => {
   const { language } = useLanguage();
 
   const toggleExpand = (cardName: keyof ExpandedState) => {
-    setExpanded((prevState) => {
+    setExpanded((prev) => {
       const newState: ExpandedState = {
         book: false,
         pc: false,
         card: false,
         finance: false,
       };
-      if (!prevState[cardName]) {
+      if (!prev[cardName]) {
         newState[cardName] = true;
       }
       return newState;
@@ -92,54 +152,6 @@ const About = () => {
 
   const currentText = textContent[language as "en" | "ro"];
 
-  const getTruncatedText = (text: string, expanded: boolean) => {
-    const sentenceEndIndex =
-      text.indexOf("...") !== -1 ? text.indexOf("...") : 60;
-    const truncated = text.substring(0, sentenceEndIndex);
-    return expanded ? text : truncated;
-  };
-
-  const Card = ({
-    cardName,
-    imgSrc,
-    title,
-    description,
-    colSpan,
-  }: {
-    cardName: keyof ExpandedState;
-    imgSrc: any;
-    title: string;
-    description: string;
-    colSpan: string;
-  }) => (
-    <div
-      onClick={() => toggleExpand(cardName)}
-      className={`md:w-full w-[80%]  ${colSpan} relative bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl overflow-hidden transform transition-transform hover:scale-105  ${
-        expanded[cardName] ? "scale-105 " : "scale-100 "
-      } transition-all duration-500 ease-in-out cursor-pointer`}
-    >
-      <div className="  absolute inset-0 bg-gradient-to-r from-orange-400 via-purple-700 to-orange-800 opacity-30"></div>
-      <div className="flex flex-col sm:flex-row p-6">
-        <Image
-          src={imgSrc}
-          alt={title}
-          className="w-full sm:w-auto sm:h-[130px] h-auto object-contain"
-        />
-        <div className="flex flex-col mt-4 sm:mt-0 sm:ml-4">
-          <h2 className="text-2xl font-bold text-white/80">{title}</h2>
-          <p className="text-lg text-white/70 mt-2">
-            {getTruncatedText(description, expanded[cardName])}
-          </p>
-          {!expanded[cardName] && (
-            <span className="text-orange-400 cursor-pointer mt-2">
-              Read More
-            </span>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-
   return (
     <div className="max-w-[1200px] mx-auto pt-[18px]" id="about">
       <h1 className="text-white text-center text-4xl sm:text-5xl max-w-[320px] mx-auto font-semibold p-4 mb-4">
@@ -170,6 +182,8 @@ const About = () => {
           title={currentText.journey.title}
           description={currentText.journey.description}
           colSpan="md:col-span-5"
+          expanded={expanded}
+          toggleExpand={toggleExpand}
         />
         <Card
           cardName="pc"
@@ -177,6 +191,8 @@ const About = () => {
           title={currentText.ideas.title}
           description={currentText.ideas.description}
           colSpan="md:col-span-3"
+          expanded={expanded}
+          toggleExpand={toggleExpand}
         />
         <Card
           cardName="card"
@@ -184,6 +200,8 @@ const About = () => {
           title={currentText.origin.title}
           description={currentText.origin.description}
           colSpan="md:col-span-3"
+          expanded={expanded}
+          toggleExpand={toggleExpand}
         />
         <Card
           cardName="finance"
@@ -191,6 +209,8 @@ const About = () => {
           title={currentText.vision.title}
           description={currentText.vision.description}
           colSpan="md:col-span-5"
+          expanded={expanded}
+          toggleExpand={toggleExpand}
         />
       </div>
     </div>
