@@ -13,6 +13,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import ecomercestore from "../assets/ecomerce-store.png";
 import nrgym from "../assets/nrgym.png";
 import acoperisuri from "../assets/acoperisuri.png";
+import lashesbyteo from "../assets/lashesbyteo.png";
 
 const Portofolio = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -30,6 +31,17 @@ const Portofolio = () => {
   }, []);
 
   const projects = [
+    {
+      title: language === "en" ? "Lashes by Teo" : "Lashes by Teo",
+      desc:
+        language === "en"
+          ? "I developed this fully responsive presentation website using Next.js, React, TypeScript, Tailwind CSS, and Sanity CMS. The platform features dynamic cards and images managed via the CMS, with a custom UI/UX design created in Figma to match the client’s needs. Currently, the client prefers to handle appointment bookings directly, but in the future, when needed, we will integrate an online appointment scheduling feature."
+          : "Am dezvoltat acest website de prezentare complet responsive, utilizând Next.js, React, TypeScript, Tailwind CSS și CMS Sanity. Platforma include carduri și imagini dinamice, gestionate prin CMS, iar designul UI/UX a fost realizat integral în Figma, adaptat cerințelor clientei. În prezent, clienta preferă să ia legătura direct cu clientele pentru programări, însă pe viitor, atunci când va fi necesar, vom integra funcționalitatea de programare online.",
+      link: "https://lashesbyteo.vercel.app/",
+      git: "https://github.com/hodisanmihai/lashesbyteo",
+      videoSrc: "/lashesbyteo.mov",
+      phoneCover: lashesbyteo,
+    },
     {
       title: language === "en" ? "Ecommerce Store" : "Magazin Online",
       desc:
